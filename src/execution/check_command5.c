@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_command5.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saylital <saylital@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:57 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/30 15:14:58 by saylital         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:26:29 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,19 @@ t_command	*check_for_dots(t_command *command)
 	ft_putstr_fd(": command not found\n", 2);
 	command = command->next;
 	return (command);
+}
+
+char *cmd_not_found(char *splitted_args)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(splitted_args, 2);
+	ft_putstr_fd(": command not found\n", 2);
+	return (NULL);
+}
+
+void	perm_den_exit(char *executable_path)
+{
+	ft_putendl_fd("minishell: Permission denied:", 2);
+	free(executable_path);
+	exit(126);
 }

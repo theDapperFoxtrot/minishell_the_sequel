@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saylital <saylital@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:10 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/30 15:08:23 by saylital         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:11:39 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	handle_token_heredoc(t_ms *shell, t_command *cmd, t_token *token)
 		token->next->type == TOKEN_REDIR_OUT))
 		return (syntax_error_and_return(shell, token));
 	cmd->command_input[cmd->command_input_index] = ft_strdup(token->value);
+	if (!cmd->command_input[cmd->command_input_index])
+		malloc_error(shell);
 	token = token->next;
 	if (token && token->type == TOKEN_ARGS)
 		setup_delim(shell, cmd, token);

@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:24 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/24 17:33:04 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 16:46:33 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	expand_env_var(t_ms *shell, int with_braces)
 	get_var_name_len(shell, with_braces);
 	shell->exp_temp_name = ft_substr(shell->exp.var_name, \
 		0, shell->exp_name_len);
+	if (!shell->exp_temp_name)
+		malloc_error(shell);
 	free(shell->exp.var_name);
 	shell->exp.var_name = NULL;
 	if (!shell->exp_temp_name)
@@ -32,9 +34,13 @@ void	var_len_not_zero(t_ms *shell, const char *str)
 {
 	shell->exp.var_name = ft_substr(str, shell->exp.var_start, \
 									shell->exp.var_len);
+	if (!shell->exp.var_name)
+		malloc_error(shell);
 	expand_env_var(shell, 0);
 	shell->exp.result = ft_realloc(shell->exp.result, shell->exp.j, \
 		shell->exp.j + ft_strlen(shell->exp.value) + 1);
+	if (!shell->exp.result)
+		malloc_error(shell);
 	ft_strlcpy(shell->exp.result + shell->exp.j, \
 		shell->exp.value, ft_strlen(shell->exp.value) + 1);
 	shell->exp.j += ft_strlen(shell->exp.value);
@@ -60,6 +66,8 @@ int	handle_expansions_no_braces(t_ms *shell, const char *str)
 	{
 		shell->exp.result = ft_realloc(shell->exp.result, \
 			shell->exp.j, shell->exp.j + 1);
+		if (!shell->exp.result)
+			malloc_error(shell);
 		shell->exp.result[shell->exp.j++] = str[shell->exp.i++];
 	}
 	return (0);

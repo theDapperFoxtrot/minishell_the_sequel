@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:38 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 15:47:05 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 17:07:50 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,13 @@ void	cleanup(t_ms *shell, int clean_shell)
 		shell->commands = NULL;
 	}
 	if (clean_shell)
+	{
+		// if (shell->exp.result)
+		// 	free(shell->exp.result);
+		// if (shell->exp_temp_name)
+		// 	free(shell->exp_temp_name);
 		free_env(shell);
+	}
 }
 
 void	free_commands(t_command *commands)

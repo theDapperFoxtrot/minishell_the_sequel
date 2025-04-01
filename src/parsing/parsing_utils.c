@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:02 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/19 20:09:03 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 16:49:58 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	setup_delim(t_ms *shell, t_command *cmd, t_token *token)
 	if (token->value[0] == '\"' || token->value[0] == '\'')
 		shell->heredoc_exp = 0;
 	stripped = parse_quotes(token->value);
+	if (!stripped)
+		malloc_error(shell);
 	cmd->heredoc_delimiter = ft_strdup(stripped);
 	free(stripped);
 	if (!cmd->heredoc_delimiter)

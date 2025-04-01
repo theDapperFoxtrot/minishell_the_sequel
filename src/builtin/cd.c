@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:39:40 by saylital          #+#    #+#             */
-/*   Updated: 2025/04/01 15:46:48 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 16:14:27 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,12 @@ void	execute_cd(t_ms *shell, char **command, char *oldpwd)
 	if (cd_to_arg(command, shell) == 0 && ft_strncmp(command[1], "..", 2) != 0)
 	{
 		temp = ft_strjoin(shell->prev_pwd, "/");
+		if (!temp)
+			malloc_error(shell);
 		free(shell->prev_pwd);
 		shell->prev_pwd = ft_strjoin(temp, command[1]);
+		if (!shell->prev_pwd)
+			malloc_error(shell);
 		free(temp);
 	}
 }

@@ -6,11 +6,20 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:31 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/20 16:27:57 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 16:08:18 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	check_if_temp_malloc(t_ms *shell, char **temp_list, int j)
+{
+	if (!temp_list[j])
+	{
+		free_split(temp_list);
+		malloc_error(shell);
+	}
+}
 
 void	set_and_free(t_ms *shell, char **temp_list, int j)
 {
@@ -41,6 +50,7 @@ void	unset_env_variable(t_ms *shell, char *key)
 			continue ;
 		}
 		temp_list[j] = ft_strdup(shell->env_list[i]);
+		check_if_temp_malloc(shell, temp_list, j);
 		i++;
 		j++;
 	}

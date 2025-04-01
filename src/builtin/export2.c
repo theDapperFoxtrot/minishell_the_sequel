@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saylital <saylital@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:22 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/31 14:37:18 by saylital         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:19:28 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,12 @@ void	equal_sign_no_value(t_ms *shell, char *key, int i)
 	char	*temp;
 
 	temp = ft_strjoin(key, "\"\"");
+	if (!temp)
+		malloc_error(shell);
 	shell->env_list[i] = ft_strdup(temp);
 	free(temp);
+	if (!shell->env_list[i])
+		malloc_error(shell);
 }
 
 void	value_or_no_value(t_ms *shell, char *key, char *value, int i)
@@ -35,7 +39,11 @@ void	value_or_no_value(t_ms *shell, char *key, char *value, int i)
 	if (ft_strchr(key, '=') && !value)
 		equal_sign_no_value(shell, key, i);
 	else
+	{
 		shell->env_list[i] = ft_strdup(key);
+		if (!shell->env_list[i])
+			malloc_error(shell);
+	}
 	i++;
 	shell->env_list[i] = NULL;
 }

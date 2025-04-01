@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:13 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/19 20:09:14 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 16:35:50 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ char	*qmark_check(t_ms *shell, int with_braces)
 			temp = shell->exp.value;
 			shell->exp.value = ft_strjoin(temp, temp_var);
 			free(temp);
+			if (!shell->exp.value)
+				malloc_error(shell);
 		}
 	}
 	return (shell->exp.value);
@@ -103,8 +105,12 @@ void	get_var_value(t_ms *shell)
 			joined = ft_strjoin(temp, shell->env_list[shell->exp_i] + \
 				ft_strlen(shell->exp_temp_name) + 1);
 			free(temp);
+			if (!joined)
+				malloc_error(shell);
 			shell->exp.value = ft_strdup(shell->env_list[shell->exp_i] + \
 				ft_strlen(shell->exp_temp_name) + 1);
+			if (!shell->exp.value)
+				malloc_error(shell);
 			free(joined);
 			break ;
 		}
@@ -113,4 +119,6 @@ void	get_var_value(t_ms *shell)
 	temp = shell->exp.value;
 	shell->exp.value = parse_quotes(temp);
 	free(temp);
+	if (!shell->exp.value)
+		malloc_error(shell);
 }

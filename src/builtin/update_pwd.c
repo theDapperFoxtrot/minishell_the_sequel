@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 13:47:21 by saylital          #+#    #+#             */
-/*   Updated: 2025/04/01 15:30:52 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 16:20:25 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ int	update_pwd(t_ms *shell, char *string, char *value)
 	new_value = ft_strjoin(string, value);
 	free(value);
 	if (!new_value)
-	{
-		print_error("Malloc failed update_env", shell, 1, 1);
-		exit(shell->exit_code);
-	}
+		malloc_error(shell);
 	len = ft_strlen(string);
 	while (shell->env_list[i])
 	{

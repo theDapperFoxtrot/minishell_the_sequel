@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:07:41 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 15:44:17 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 16:30:10 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ int				is_builtin(char **command, t_ms *shell);
 void			fork_error(int *new_pipe);
 char			*find_path(char *cmd, char **envp);
 int				is_dir(char *str);
-char			*find_directory(char **dir, char *splitted_args);
+char			*find_directory(t_ms *shell, char **dir, char *splitted_args);
 void			find_exec_path_error(t_ms *shell, char **args, \
 					char *message, int exit_code);
 char			*access_check(t_ms *shell, char **args);
@@ -190,6 +190,8 @@ void			parent_wait(t_ms *shell, t_command *command, int *pipefd);
 void			pipe_failure(t_ms *shell);
 int				run_builtin(t_ms *shell, char **command, \
 					void (*function)(char **, t_ms *));
+char			*cmd_not_found(char *splitted_args);
+void			perm_den_exit(char *executable_path);
 // parser
 void			parse_tokens(t_ms *shell);
 char			*parse_quotes(char *str);

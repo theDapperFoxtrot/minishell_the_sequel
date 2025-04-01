@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:50:38 by saylital          #+#    #+#             */
-/*   Updated: 2025/04/01 15:30:53 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 16:19:50 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	if_pwd(t_ms *shell, char *pwd)
 		{
 			free(shell->env_list[i]);
 			shell->env_list[i] = ft_strjoin("PWD=", pwd);
+			if (!shell->env_list[i])
+				malloc_error(shell);
 			break ;
 		}
 		i++;

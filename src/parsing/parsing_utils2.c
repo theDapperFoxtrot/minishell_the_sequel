@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saylital <saylital@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:08 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/30 15:08:56 by saylital         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:10:45 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	handle_token_redir_in(t_ms *shell, t_command *cmd, t_token *token)
 	char	*expanded_value;
 
 	cmd->command_input[cmd->command_input_index] = ft_strdup(token->value);
-	if (!cmd->command_input[cmd->command_input_index])
-		malloc_error(shell);
+	// if (!cmd->command_input[cmd->command_input_index])
+	// 	malloc_error(shell);
 	token = token->next;
 	if (token && token->type == TOKEN_ARGS)
 	{
@@ -83,8 +83,8 @@ void	handle_token_redir_in(t_ms *shell, t_command *cmd, t_token *token)
 		}
 		cmd->command_input[cmd->command_input_index + 1] = \
 			ft_strdup(expanded_value);
-		if (!cmd->command_input[cmd->command_input_index + 1])
-			malloc_error(shell);
+		// if (!cmd->command_input[cmd->command_input_index + 1])
+		// 	malloc_error(shell);
 		cmd->redir_in = 1;
 		free(expanded_value);
 	}
@@ -99,6 +99,8 @@ void	make_heredoc_one_line(t_ms *shell, t_command *cmd)
 
 	i = 0;
 	cmd->heredoc_line = ft_strdup("");
+	if (!cmd->heredoc_line)
+		malloc_error(shell);
 	while (cmd->heredoc_lines[i])
 	{
 		line = ft_strjoin(cmd->heredoc_lines[i], "\n");
@@ -109,6 +111,8 @@ void	make_heredoc_one_line(t_ms *shell, t_command *cmd)
 		cmd->heredoc_line = ft_strjoin(temp, line);
 		free(temp);
 		free(line);
+		if (!cmd->heredoc)
+			malloc_error(shell);
 		i++;
 	}
 	free(cmd->heredoc_lines);
