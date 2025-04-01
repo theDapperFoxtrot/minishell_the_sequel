@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:08 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 17:10:45 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:42:36 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,6 @@ void	make_heredoc_one_line(t_ms *shell, t_command *cmd)
 		cmd->heredoc_line = ft_strjoin(temp, line);
 		free(temp);
 		free(line);
-		if (!cmd->heredoc)
-			malloc_error(shell);
 		i++;
 	}
 	free(cmd->heredoc_lines);

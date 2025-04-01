@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:13 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 16:35:50 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:42:31 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,4 @@ void	get_var_value(t_ms *shell)
 	temp = shell->exp.value;
 	shell->exp.value = parse_quotes(temp);
 	free(temp);
-	if (!shell->exp.value)
-		malloc_error(shell);
 }
