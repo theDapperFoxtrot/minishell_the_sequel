@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:08 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 18:42:36 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:43:55 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	handle_token_redir_in(t_ms *shell, t_command *cmd, t_token *token)
 	char	*expanded_value;
 
 	cmd->command_input[cmd->command_input_index] = ft_strdup(token->value);
-	// if (!cmd->command_input[cmd->command_input_index])
-	// 	malloc_error(shell);
+	if (!cmd->command_input[cmd->command_input_index])
+		malloc_error(shell);
 	token = token->next;
 	if (token && token->type == TOKEN_ARGS)
 	{
@@ -83,8 +83,8 @@ void	handle_token_redir_in(t_ms *shell, t_command *cmd, t_token *token)
 		}
 		cmd->command_input[cmd->command_input_index + 1] = \
 			ft_strdup(expanded_value);
-		// if (!cmd->command_input[cmd->command_input_index + 1])
-		// 	malloc_error(shell);
+		if (!cmd->command_input[cmd->command_input_index + 1])
+			malloc_error(shell);
 		cmd->redir_in = 1;
 		free(expanded_value);
 	}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: saylital <saylital@student.hive.fi>        +#+  +:+       +#+         #
+#    By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 17:42:23 by smishos           #+#    #+#              #
-#    Updated: 2025/03/29 13:30:49 by saylital         ###   ########.fr        #
+#    Updated: 2025/04/01 19:10:56 by smishos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS = 	src/main.c \
 		src/parsing/parsing_utils6.c \
 		src/parsing/parsing_utils7.c \
 		src/parsing/parsing_utils8.c \
+		src/parsing/parsing_utils9.c \
 		src/error_cleanup/error_cleanup.c \
 		src/file_helpers.c \
 		src/execution/check_command.c \

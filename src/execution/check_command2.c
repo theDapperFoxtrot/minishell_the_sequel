@@ -6,12 +6,11 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:48 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 16:26:18 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:49:48 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
 
 char	*find_directory(t_ms *shell, char **dir, char *splitted_args)
 {

@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:05 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 17:10:06 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:43:50 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	handle_expansions_if_braces(t_ms *shell, const char *str)
 	{
 		shell->exp.var_name = ft_substr(str, shell->exp.i, \
 			shell->exp.closing_brace - shell->exp.i + 1);
-		// if (!shell->exp.var_name)
-		// 	malloc_error(shell);
+		if (!shell->exp.var_name)
+			malloc_error(shell);
 		expand_env_var(shell, 1);
 		shell->exp.result = ft_realloc(shell->exp.result, shell->exp.j, \
 			shell->exp.j + ft_strlen(shell->exp.value) + 1);
-		// if (!shell->exp.result)
-		// 	malloc_error(shell);
+		if (!shell->exp.result)
+			malloc_error(shell);
 		ft_strlcpy(shell->exp.result + shell->exp.j, shell->exp.value, \
 			ft_strlen(shell->exp.value) + 1);
 		shell->exp.j += ft_strlen(shell->exp.value);

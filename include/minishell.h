@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:07:41 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 16:30:10 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 19:10:44 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,6 +247,8 @@ void			realloc_and_write(t_ms *shell, const char *str, int inc_i, \
 void			var_len_not_zero(t_ms *shell, const char *str);
 void			null_hd_and_oneline(t_ms *shell, t_command *cmd, int i);
 int				print_ret(t_ms *shell, char *message);
+void			set_value_after_parse(t_ms *shell, char *temp);
+void			var_val_mal_check(t_ms *shell, char *joined);
 // tokens folder
 void			tokenize_input(t_ms *shell);
 int				is_operator(char c);
