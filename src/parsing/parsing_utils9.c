@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:09:29 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 19:09:41 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/01 19:13:24 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ void	var_val_mal_check(t_ms *shell, char *joined)
 	if (!shell->exp.value)
 		malloc_error(shell);
 }
-
