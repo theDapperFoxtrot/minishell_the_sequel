@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:02 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 16:49:58 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/03 18:47:47 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	heredoc_lines_err(t_ms *shell, t_command *cmd, int i)
 		ft_putstr_fd(cmd->heredoc_delimiter, 2);
 		ft_putstr_fd("')", 2);
 		ft_putstr_fd("\n", 2);
+		free(cmd->heredoc_delimiter);
+		cmd->heredoc_delimiter = NULL;
 		return (1);
 	}
 	return (0);
@@ -89,8 +91,12 @@ int	heredoc_loop(t_ms *shell, t_command *cmd, int i)
 		if (heredoc_lines_err(shell, cmd, i))
 			break ;
 		if (ft_strncmp(cmd->heredoc_lines[i], cmd->heredoc_delimiter, \
-						ft_strlen(cmd->heredoc_lines[i])) == 0)
+			ft_strlen(cmd->heredoc_lines[i])) == 0)
+		{
+			free(cmd->heredoc_delimiter);
+			cmd->heredoc_delimiter = NULL;
 			break ;
+		}
 		if (cmd->heredoc_lines[i][0] == '$' && shell->heredoc_exp)
 			cmd->heredoc_lines[i] = \
 				handle_expansions(shell, cmd->heredoc_lines[i]);

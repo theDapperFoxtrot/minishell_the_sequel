@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:08 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 18:43:55 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/03 18:26:57 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,13 @@ void	make_heredoc_one_line(t_ms *shell, t_command *cmd)
 {
 	int		i;
 	char	*line;
-	char	*temp;
 
 	i = 0;
+	if (shell->hd_count > 0)
+	{
+		free(cmd->heredoc_line);
+		cmd->heredoc_line = NULL;
+	}
 	cmd->heredoc_line = ft_strdup("");
 	if (!cmd->heredoc_line)
 		malloc_error(shell);
@@ -106,10 +110,7 @@ void	make_heredoc_one_line(t_ms *shell, t_command *cmd)
 		line = ft_strjoin(cmd->heredoc_lines[i], "\n");
 		if (!line)
 			malloc_error(shell);
-		free(cmd->heredoc_lines[i]);
-		temp = cmd->heredoc_line;
-		cmd->heredoc_line = ft_strjoin(temp, line);
-		free(temp);
+		mhol_strjoin(cmd, line, i);
 		free(line);
 		i++;
 	}

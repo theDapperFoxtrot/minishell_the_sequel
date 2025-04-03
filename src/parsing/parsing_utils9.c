@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:09:29 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 19:13:24 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/03 18:27:02 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,14 @@ void	var_val_mal_check(t_ms *shell, char *joined)
 		ft_strlen(shell->exp_temp_name) + 1);
 	if (!shell->exp.value)
 		malloc_error(shell);
+}
+
+void	mhol_strjoin(t_command *cmd, char *line, int i)
+{
+	char	*temp;
+
+	free(cmd->heredoc_lines[i]);
+	temp = cmd->heredoc_line;
+	cmd->heredoc_line = ft_strjoin(temp, line);
+	free(temp);
 }

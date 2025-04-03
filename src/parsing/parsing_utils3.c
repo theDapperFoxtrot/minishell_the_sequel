@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:10 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 16:11:39 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/03 18:43:19 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int	handle_token_heredoc(t_ms *shell, t_command *cmd, t_token *token)
 	if (!cmd->command_input[cmd->command_input_index])
 		malloc_error(shell);
 	token = token->next;
+	start_sig_checkers(&sig_handler_heredoc);
 	if (token && token->type == TOKEN_ARGS)
 		setup_delim(shell, cmd, token);
 	i = 0;
-	start_sig_checkers(&sig_handler_heredoc);
 	shell->heredoc_line_count++;
 	allocate_heredoc_lines(shell, cmd);
 	rl_event_hook = event;

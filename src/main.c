@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:54 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/03 15:34:03 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/03 18:32:59 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ void	process_input(t_ms *shell)
 	if (invalid_input(shell->input))
 		return ;
 	tokenize_input(shell);
+	if (shell->hd_count > 16)
+	{
+		print_error("minishell: maximum here-document count exceeded", \
+			shell, 2, 1);
+		exit(shell->exit_code);
+	}
 	if (!shell->token)
 		return ;
 	if (shell->token_error)
@@ -61,6 +67,7 @@ static void	init_shell(t_ms *shell, char **envp)
 	shell->rd_in_count = 0;
 	shell->rd_out_count = 0;
 	shell->heredoc_line_count = 0;
+	shell->hd_count = 0;
 	ft_bzero(&shell->exp, sizeof(t_exp));
 	shell->exp.i = 0;
 	create_env(shell, envp);
@@ -91,6 +98,7 @@ void	input_loop(t_ms *shell)
 		if (*(shell->input))
 			add_history(shell->input);
 		process_input(shell);
+		shell->hd_count = 0;
 		rl_done = 1;
 	}
 }

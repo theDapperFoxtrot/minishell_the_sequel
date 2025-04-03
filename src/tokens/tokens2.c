@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:42 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/19 20:09:43 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/03 18:21:35 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	heredoc_case(t_ms *shell)
 	shell->buffer[1] = '<';
 	shell->buffer[2] = '\0';
 	shell->i++;
+	shell->hd_count++;
 	shell->type = TOKEN_HERE_DOC;
 }
 
