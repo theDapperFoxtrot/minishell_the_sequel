@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saylital <saylital@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:42 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/29 16:02:51 by saylital         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:31:40 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 t_command	*checking_for_select_commands(t_ms *shell, \
 			t_command *command, int *new_pipe)
 {
-	if ((ft_strncmp(command->args[0], "..", 2) == 0 && \
-			ft_strlen(command->args[0]) == 2))
+	if ((ft_strncmp(command->args[0], ".", 1) == 0))
 	{
-		command = check_for_dots(command);
-		shell->select_command_found = 1;
-		return (command);
+		if ((ft_strncmp(command->args[0], "..", 2) == 0 && \
+				ft_strlen(command->args[0]) == 2))
+			return (check_for_dots(shell, command));
+		return (check_for_dot(shell, command));
 	}
 	if (ft_strncmp(command->args[0], "exit", 4) == 0 && \
 			ft_strlen(command->args[0]) == 4)

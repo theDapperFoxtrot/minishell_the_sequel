@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:39:40 by saylital          #+#    #+#             */
-/*   Updated: 2025/04/01 16:14:27 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/03 14:38:18 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	if_not_oldpwd(t_ms *shell, char **command, char *home, char *oldpwd)
 	free(home);
 	oldpwd = getcwd(NULL, 0);
 	update_pwd(shell, "OLDPWD=", shell->prev_pwd);
+	shell->prev_pwd = NULL;
 	update_pwd(shell, "PWD=", oldpwd);
 }
 

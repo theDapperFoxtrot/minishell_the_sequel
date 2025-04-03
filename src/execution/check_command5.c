@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:57 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 18:49:59 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/03 15:31:21 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ int	run_builtin(t_ms *shell, char **command, \
 	return (1);
 }
 
-t_command	*check_for_dots(t_command *command)
+t_command	*check_for_dots(t_ms *shell, t_command *command)
 {
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(command->args[0], 2);
 	ft_putstr_fd(": command not found\n", 2);
+	shell->exit_code = 127;
+	shell->select_command_found = 1;
 	command = command->next;
 	return (command);
 }
@@ -50,9 +52,10 @@ char	*cmd_not_found(char *splitted_args)
 	return (NULL);
 }
 
-void	perm_den_exit(char *executable_path)
+void	perm_den_exit(t_ms *shell, char *executable_path)
 {
 	ft_putendl_fd("minishell: Permission denied:", 2);
 	free(executable_path);
+	cleanup(shell, 1);
 	exit(126);
 }

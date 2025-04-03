@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_command4.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saylital <saylital@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:54 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/30 15:14:39 by saylital         ###   ########.fr       */
+/*   Updated: 2025/04/03 14:39:09 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	execute_command(t_ms *shell, char **args)
 				write(1, "\n", 1);
 			perror("minishell");
 			shell->exit_code = 126;
+			if (path)
+				free(path);
 			cleanup(shell, 1);
 			exit(shell->exit_code);
 		}

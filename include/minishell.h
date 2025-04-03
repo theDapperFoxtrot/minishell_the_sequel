@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:07:41 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 19:10:44 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/03 15:30:53 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,8 @@ void			execute_redir(t_ms *shell, t_command *command, int i);
 void			execute_command(t_ms *shell, char **args);
 void			child_process(t_ms *shell, t_command *command, int *new_pipe);
 t_command		*parent_process(t_ms *shell, t_command *command, int *new_pipe);
-t_command		*check_for_dots(t_command *command);
+t_command		*check_for_dots(t_ms *shell, t_command *command);
+t_command		*check_for_dot(t_ms *shell, t_command *command);
 t_command		*check_for_exit(t_ms *shell, t_command *command, int *new_pipe);
 t_command		*checking_for_select_commands(t_ms *shell, t_command *command, \
 					int *new_pipe);
@@ -191,7 +192,7 @@ void			pipe_failure(t_ms *shell);
 int				run_builtin(t_ms *shell, char **command, \
 					void (*function)(char **, t_ms *));
 char			*cmd_not_found(char *splitted_args);
-void			perm_den_exit(char *executable_path);
+void			perm_den_exit(t_ms *shell, char *executable_path);
 // parser
 void			parse_tokens(t_ms *shell);
 char			*parse_quotes(char *str);

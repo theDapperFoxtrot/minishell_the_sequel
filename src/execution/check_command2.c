@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:48 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 18:49:48 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/03 14:31:17 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*find_directory(t_ms *shell, char **dir, char *splitted_args)
 		{
 			if (access(executable_path, X_OK) == 0)
 				return (executable_path);
-			perm_den_exit(executable_path);
+			perm_den_exit(shell, executable_path);
 		}
 		free(executable_path);
 		i++;

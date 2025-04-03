@@ -6,7 +6,7 @@
 #    By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 17:42:23 by smishos           #+#    #+#              #
-#    Updated: 2025/04/01 19:10:56 by smishos          ###   ########.fr        #
+#    Updated: 2025/04/03 15:32:13 by smishos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,10 @@ SRCS = 	src/main.c \
 		src/execution/check_command3.c \
 		src/execution/check_command4.c \
 		src/execution/check_command5.c \
+		src/execution/check_command6.c \
 		src/signals/signals.c \
 		src/signals/signal_handlers.c
+
 OBJ_DIR = objects
 OBJS = $(addprefix $(OBJ_DIR)/,  $(SRCS:.c=.o))
 LIBFT = ./libft/libft.a
