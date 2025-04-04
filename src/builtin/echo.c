@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saylital <saylital@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:24:22 by saylital          #+#    #+#             */
-/*   Updated: 2025/03/28 11:43:52 by saylital         ###   ########.fr       */
+/*   Updated: 2025/04/04 13:59:19 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_echo(char **command, t_ms *shell)
 	int	i;
 	int	no_newline;
 
+	signal(SIGPIPE, SIG_IGN);
 	i = 1;
 	no_newline = 1;
 	while (ft_strncmp(command[i], "-n", 2) == 0 && check_n(command[i]))

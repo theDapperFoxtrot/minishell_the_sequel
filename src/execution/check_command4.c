@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:54 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/03 14:39:09 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:03:06 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	execute_command(t_ms *shell, char **args)
 		{
 			if (g_signal == SIGINT)
 				write(1, "\n", 1);
-			perror("minishell");
+			perror("minishell execve");
 			shell->exit_code = 126;
 			if (path)
 				free(path);
@@ -99,8 +99,9 @@ t_command	*parent_process(t_ms *shell, t_command *command, int *new_pipe)
 
 t_command	*check_for_exit(t_ms *shell, t_command *command, int *new_pipe)
 {
-	if (shell->child_count > 1)
-		close(new_pipe[0]);
+	(void)new_pipe;
+	// if (shell->child_count > 1)
+	// 	close(new_pipe[0]);
 	ft_exit(command, shell);
 	command = command->next;
 	return (command);

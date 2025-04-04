@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:39:40 by saylital          #+#    #+#             */
-/*   Updated: 2025/04/03 14:38:18 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:13:09 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ void	if_not_oldpwd(t_ms *shell, char **command, char *home, char *oldpwd)
 	update_pwd(shell, "PWD=", oldpwd);
 }
 
-void	too_many_args(t_ms *shell, char *oldpwd)
+void	too_many_args(t_ms *shell)
 {
 	ft_putstr_fd("minishell: cd: too many arguments\n", 2);
-	free(oldpwd);
 	shell->exit_code = 1;
 }
 
@@ -76,10 +75,14 @@ void	ft_cd(char **command, t_ms *shell)
 	char	*home;
 	int		count;
 
+	count = count_args(command);
+	if (count > 2)
+		return (too_many_args(shell));
+	if (!command || !(command[1][0]))
+		return ;
 	home = get_home_var(shell);
 	if (!home)
 		return ;
-	count = count_args(command);
 	oldpwd = getcwd(NULL, 0);
 	if (!oldpwd)
 		return (if_not_oldpwd(shell, command, home, oldpwd));
@@ -87,8 +90,6 @@ void	ft_cd(char **command, t_ms *shell)
 	if (count == 1)
 		return (if_count_is_1(shell, oldpwd, home));
 	free(home);
-	if (count > 2)
-		return (too_many_args(shell, oldpwd));
 	if (shell->child_count > 0)
 		return (if_pipe_count(shell, command, oldpwd));
 	else

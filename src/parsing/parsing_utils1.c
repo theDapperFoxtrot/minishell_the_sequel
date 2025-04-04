@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:05 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 18:43:50 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:50:00 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,15 @@ int	go_through_exp_cases(t_ms *shell, const char *str)
 		{
 			shell->exp.i++;
 			shell->exp.result = handle_expansions_quotes(shell, str);
-		}
-		if (handle_expansions_dollar_sign(shell, str) == -1)
-			return (0);
-		else
 			return (1);
+		}
+		else
+		{
+			if (handle_expansions_dollar_sign(shell, str) == -1)
+				return (0);
+			else
+				return (1);
+		}
 	}
 	else
 		realloc_and_write(shell, str, 0, 1);

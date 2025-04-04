@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:48 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/03 14:31:17 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:01:01 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ char	*find_directory(t_ms *shell, char **dir, char *splitted_args)
 	i = 0;
 	while (dir[i] != NULL)
 	{
+		if (!(*splitted_args))
+		{
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(splitted_args, 2);
+			ft_putstr_fd(": command not found\n", 2);
+			shell->exit_code = 127;
+			return (NULL);
+		}
 		slash = ft_strjoin(dir[i], "/");
 		if (!slash)
 			malloc_error(shell);

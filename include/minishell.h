@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:07:41 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/03 18:26:48 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/04 13:13:15 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_ms
 	int				prev_pipe_in;
 	int				exec;
 	int				hd_count;
+	int				alpha_exit;
 }	t_ms;
 
 // signals
@@ -134,6 +135,8 @@ void			ft_putstr_eq(char *str);
 void			ft_echo(char **command, t_ms *shell);
 void			ft_pwd(char **command, t_ms *shell);
 void			ft_exit(t_command *command, t_ms *shell);
+int				actually_exit(t_ms *shell);
+long long		msatol(const char *str);
 void			ft_env(char **command, t_ms *shell);
 void			ft_cd(char **command, t_ms *shell);
 void			prev_pwd_func(t_ms *shell, char *oldpwd);

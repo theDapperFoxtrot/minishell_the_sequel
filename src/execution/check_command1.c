@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_command1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saylital <saylital@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:45 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/29 16:37:08 by saylital         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:23:45 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ char	*find_path(char *cmd, char **envp)
 	}
 	if (path == NULL)
 	{
-		ft_putstr_fd("minishell: command not found: ", 2);
-		ft_putendl_fd(cmd, 2);
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
 		return (NULL);
 	}
 	return (path);

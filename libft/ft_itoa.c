@@ -6,13 +6,13 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:30:34 by smishos           #+#    #+#             */
-/*   Updated: 2024/04/27 15:40:34 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/04 12:30:20 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_digits(int n)
+int	count_digits(int n)
 {
 	int	count;
 
@@ -27,7 +27,7 @@ static int	count_digits(int n)
 	return (count);
 }
 
-static void	convert_integer(long num, char *str, int i)
+void	convert_integer(long num, char *str, int i)
 {
 	while (i-- > 0)
 	{

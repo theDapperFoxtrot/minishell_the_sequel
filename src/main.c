@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:54 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/03 18:32:59 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/04 12:29:55 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	process_input(t_ms *shell)
 	cleanup(shell, 0);
 }
 
-static void	init_shell(t_ms *shell, char **envp)
+void	init_shell(t_ms *shell, char **envp)
 {
 	ft_bzero(shell, sizeof(t_ms));
 	shell->rd_in_count = 0;
@@ -99,6 +99,7 @@ void	input_loop(t_ms *shell)
 			add_history(shell->input);
 		process_input(shell);
 		shell->hd_count = 0;
+		shell->pipe_count = 0;
 		rl_done = 1;
 	}
 }

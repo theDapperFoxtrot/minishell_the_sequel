@@ -6,13 +6,13 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:28:49 by smishos           #+#    #+#             */
-/*   Updated: 2024/11/28 19:39:23 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/04 12:30:12 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_substrings(const char *str, char c)
+int	count_substrings(const char *str, char c)
 {
 	int	count;
 	int	in_substring;
@@ -35,7 +35,7 @@ static int	count_substrings(const char *str, char c)
 	return (count);
 }
 
-static char	*substring_create(const char *str, int start, int finish)
+char	*substring_create(const char *str, int start, int finish)
 {
 	char	*substr;
 	int		i;
@@ -50,7 +50,7 @@ static char	*substring_create(const char *str, int start, int finish)
 	return (substr);
 }
 
-static void	free_result_array(char **result, int j)
+void	free_result_array(char **result, int j)
 {
 	while (j >= 0)
 	{
@@ -62,7 +62,7 @@ static void	free_result_array(char **result, int j)
 	result = NULL;
 }
 
-static int	split_string(char const *s, char c, char **result, int count)
+int	split_string(char const *s, char c, char **result, int count)
 {
 	size_t	i;
 	int		j;
