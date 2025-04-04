@@ -50,6 +50,10 @@ SRCS = ft_atoi.c \
 	ft_lstiter_bonus.c \
 	ft_lstmap_bonus.c \
 
+GET_NEXT_LINE = get_next_line/get_next_line.c \
+	get_next_line/get_next_line_utils.c
+SRCS += $(GET_NEXT_LINE)
+
 HEAD = libft.h
 
 AR = ar rcs

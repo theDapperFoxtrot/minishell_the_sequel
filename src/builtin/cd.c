@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:39:40 by saylital          #+#    #+#             */
-/*   Updated: 2025/04/04 15:13:09 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/04 16:46:47 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ void	ft_cd(char **command, t_ms *shell)
 	count = count_args(command);
 	if (count > 2)
 		return (too_many_args(shell));
-	if (!command || !(command[1][0]))
-		return ;
 	home = get_home_var(shell);
 	if (!home)
 		return ;

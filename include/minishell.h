@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:07:41 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/04 13:13:15 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/04 16:28:34 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_ms
 	int				exec;
 	int				hd_count;
 	int				alpha_exit;
+	int				token_loop;
 }	t_ms;
 
 // signals
