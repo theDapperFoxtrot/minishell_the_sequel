@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:39:40 by saylital          #+#    #+#             */
-/*   Updated: 2025/04/05 18:23:47 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 19:59:16 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@ int	cd_to_arg(char **command, t_ms *shell)
 {
 	if (chdir(command[1]) == -1)
 	{
+		if (access(command[1], F_OK) == 0)
+		{
+			if (access(command[1], X_OK) != 0)
+			{
+				ft_putstr_fd("minishell: cd: ", 2);
+				ft_putstr_fd(command[1], 2);
+				ft_putstr_fd(": Permission denied\n", 2);
+				shell->exit_code = 1;
+				return (1);
+			}
+		}
 		ft_putstr_fd("minishell: cd: ", 2);
 		ft_putstr_fd(command[1], 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
