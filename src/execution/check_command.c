@@ -6,25 +6,21 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:42 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/04 12:21:50 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 17:47:34 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_command	*checking_for_select_commands(t_ms *shell, \
-			t_command *command, int *new_pipe)
+t_command *checking_for_select_commands(t_ms *shell,
+										t_command *command, int *new_pipe)
 {
-	if ((ft_strncmp(command->args[0], ".", 1) == 0) && \
-		ft_strlen(command->args[0]) == 1)
-	{
-		if ((ft_strncmp(command->args[0], "..", 2) == 0 && \
-				ft_strlen(command->args[0]) == 2))
-			return (check_for_dots(shell, command));
+	if ((ft_strncmp(command->args[0], ".", 1) == 0) && ft_strlen(command->args[0]) == 1 && command->args[1] == NULL)
 		return (check_for_dot(shell, command));
-	}
-	if (ft_strncmp(command->args[0], "exit", 4) == 0 && \
-			ft_strlen(command->args[0]) == 4)
+	else if ((ft_strncmp(command->args[0], "..", 2) == 0 && ft_strlen(command->args[0]) == 2))
+		return (check_for_dots(shell, command));
+	if (ft_strncmp(command->args[0], "exit", 4) == 0 &&
+		ft_strlen(command->args[0]) == 4)
 	{
 		command = check_for_exit(shell, command, new_pipe);
 		shell->select_command_found = 1;
@@ -38,14 +34,40 @@ t_command	*checking_for_select_commands(t_ms *shell, \
 	return (command);
 }
 
-void	pipe_failure(t_ms *shell)
+// t_command	*checking_for_select_commands(t_ms *shell, 
+// 			t_command *command, int *new_pipe)
+// {
+// 	if ((ft_strncmp(command->args[0], ".", 1) == 0) && 
+// 		ft_strlen(command->args[0]) == 1)
+// 	{
+// 		if ((ft_strncmp(command->args[0], "..", 2) == 0 && 
+// 				ft_strlen(command->args[0]) == 2))
+// 			return (check_for_dots(shell, command));
+// 		return (check_for_dot(shell, command));
+// 	}
+// 	if (ft_strncmp(command->args[0], "exit", 4) == 0 && 
+// 			ft_strlen(command->args[0]) == 4)
+// 	{
+// 		command = check_for_exit(shell, command, new_pipe);
+// 		shell->select_command_found = 1;
+// 		return (command);
+// 	}
+// 	if (command->next == NULL && is_parent_builtin(command->args, shell))
+// 	{
+// 		command = command->next;
+// 		shell->select_command_found = 1;
+// 	}
+// 	return (command);
+// }
+
+void pipe_failure(t_ms *shell)
 {
 	ft_putendl_fd("minishell: pipe failed", 2);
 	cleanup(shell, 1);
 	exit(EXIT_FAILURE);
 }
 
-void	starting_values(t_ms *shell)
+void starting_values(t_ms *shell)
 {
 	shell->prev_pipe_in = -1;
 	shell->last_pid = 0;
@@ -53,7 +75,7 @@ void	starting_values(t_ms *shell)
 	shell->select_command_found = 0;
 }
 
-pid_t	call_fork(t_ms *shell, t_command *command, int *new_pipe)
+pid_t call_fork(t_ms *shell, t_command *command, int *new_pipe)
 {
 	shell->child_count++;
 	command->pid = fork();
@@ -62,9 +84,9 @@ pid_t	call_fork(t_ms *shell, t_command *command, int *new_pipe)
 	return (command->pid);
 }
 
-void	check_command(t_ms *shell, t_command *command)
+void check_command(t_ms *shell, t_command *command)
 {
-	int			new_pipe[2];
+	int new_pipe[2];
 
 	starting_values(shell);
 	while (command)
@@ -75,7 +97,7 @@ void	check_command(t_ms *shell, t_command *command)
 			if (shell->select_command_found)
 			{
 				shell->select_command_found = 0;
-				continue ;
+				continue;
 			}
 		}
 		if (command->next && pipe(new_pipe) == -1)

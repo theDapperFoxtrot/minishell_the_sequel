@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:08 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/04 17:29:27 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 17:26:26 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,8 @@ void	handle_token_args(t_ms *shell, t_command *cmd, t_token *token)
 	char	*expanded_value;
 
 	expanded_value = handle_expansions(shell, token->value);
-	if (!expanded_value[0] && shell->token_loop == 0 && !token->next)
-	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(expanded_value, 2);
-		ft_putstr_fd(": command not found\n", 2);
-		shell->exit_code = 127;
-		shell->token_loop = 0;
-		if (expanded_value)
-			free(expanded_value);
+	if (!expanded_value)
 		return ;
-	}
-	if (!expanded_value || !expanded_value[0])
-	{
-		if (expanded_value)
-			free(expanded_value);
-		return ;
-	}
 	add_argument(cmd, expanded_value, shell);
 	cmd->arg_count++;
 	if (expanded_value)

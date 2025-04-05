@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:07:41 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/04 16:28:34 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 16:59:46 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <errno.h>
 
 extern int	g_signal;
 
@@ -109,7 +110,8 @@ typedef struct s_ms
 	int				exec;
 	int				hd_count;
 	int				alpha_exit;
-	int				token_loop;
+	int				processed_quotes;
+	int				not_executable;
 }	t_ms;
 
 // signals
@@ -170,7 +172,7 @@ int				is_builtin(char **command, t_ms *shell);
 void			fork_error(int *new_pipe);
 char			*find_path(char *cmd, char **envp);
 int				is_dir(char *str);
-char			*find_directory(t_ms *shell, char **dir, char *splitted_args);
+char			*find_directory(t_ms *shell, char **dir, char *arg);
 void			find_exec_path_error(t_ms *shell, char **args, \
 					char *message, int exit_code);
 char			*access_check(t_ms *shell, char **args);
@@ -203,7 +205,7 @@ void			parse_tokens(t_ms *shell);
 char			*parse_quotes(char *str);
 void			add_argument(t_command *cmd, char *arg, t_ms *shell);
 char			*handle_expansions(t_ms *shell, const char *str);
-void			handle_token_args(t_ms *shell, t_command *cmd, t_token *token);
+void				handle_token_args(t_ms *shell, t_command *cmd, t_token *token);
 t_command		*new_cmd_struct(t_ms *shell);
 void			handle_token_redir_in(t_ms *shell, \
 				t_command *cmd, t_token *token);

@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:21 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/04 17:07:19 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 14:11:06 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ t_command	*new_command(t_ms *shell, t_command *cmd, t_token *token)
 	cmd->command_input_index = 0;
 	if (!token->next)
 		pipe_no_next_token(shell);
-	shell->token_loop = 0;
 	return (cmd);
 }
 

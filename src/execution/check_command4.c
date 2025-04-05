@@ -6,26 +6,11 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:54 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/04 16:22:10 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 17:29:18 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-char	**check_empty_args(t_command *command, t_ms *shell)
-{
-	char	**args;
-
-	args = command->args;
-	while (args && *args && (*args)[0] == '\0')
-		args++;
-	if (!args || !args[0] || args[0][0] == '\0')
-	{
-		cleanup(shell, 1);
-		exit(0);
-	}
-	return (args);
-}
 
 void	execute_command(t_ms *shell, char **args)
 {
@@ -39,11 +24,19 @@ void	execute_command(t_ms *shell, char **args)
 			cleanup(shell, 1);
 			exit(127);
 		}
+		// int i = 0;
+		// printf("execve: %s\n", path);
+		// while (args[i])
+		// {
+		// 	printf("args: %s\n", args[i++]);
+		// }
 		if (execve(path, args, shell->env_list) == -1)
 		{
 			if (g_signal == SIGINT)
 				write(1, "\n", 1);
-			perror("minishell execve");
+			ft_putstr_fd("minishell execve: ", 2);
+			ft_putstr_fd(strerror(errno), 2);
+			ft_putstr_fd("\n", 2);
 			shell->exit_code = 126;
 			if (path)
 				free(path);
@@ -75,7 +68,7 @@ void	child_process(t_ms *shell, t_command *command, int *new_pipe)
 	i = -1;
 	while (command->command_input[++i])
 		execute_redir(shell, command, i);
-	args = check_empty_args(command, shell);
+	args = command->args;
 	shell->exec = is_builtin(args, shell);
 	execute_command(shell, args);
 	cleanup(shell, 1);

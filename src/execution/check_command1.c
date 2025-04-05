@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:45 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/04 15:23:45 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 17:43:10 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	is_parent_builtin(char **cmd, t_ms *shell)
 
 int	is_builtin(char **command, t_ms *shell)
 {
+	if (!command)
+		return (1);
 	if (ft_strncmp(command[0], "export", 6) == 0 && \
 		ft_strlen(command[0]) == 6)
 		return (run_builtin(shell, command, ft_export));

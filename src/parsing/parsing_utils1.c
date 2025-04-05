@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:05 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/04 14:50:00 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 17:30:42 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,11 @@ int	go_through_exp_cases(t_ms *shell, const char *str)
 	return (1);
 }
 
-char	*handle_expansions(t_ms *shell, const char *str)
+char *handle_expansions(t_ms *shell, const char *str)
 {
 	shell->exp.i = 0;
 	shell->exp.j = 0;
+	shell->processed_quotes = 0;
 	shell->exp.result = ft_strdup("");
 	if (!shell->exp.result)
 		malloc_error(shell);
@@ -108,14 +109,17 @@ char	*handle_expansions(t_ms *shell, const char *str)
 	{
 		if (!go_through_exp_cases(shell, str))
 			return (NULL);
-		continue ;
 	}
 	shell->exp.value = free_and_nullify(shell->exp.value);
 	shell->exp.var_name = free_and_nullify(shell->exp.var_name);
-	shell->exp.result = ft_realloc(shell->exp.result, shell->exp.j, \
-		shell->exp.j + 1);
+	shell->exp.result = ft_realloc(shell->exp.result, shell->exp.j, shell->exp.j + 1);
 	if (!shell->exp.result)
 		malloc_error(shell);
 	shell->exp.result[shell->exp.j] = '\0';
+	if (!shell->processed_quotes && shell->exp.result[0] == '\0')
+	{
+		free(shell->exp.result);
+		return (NULL);
+	}
 	return (shell->exp.result);
 }

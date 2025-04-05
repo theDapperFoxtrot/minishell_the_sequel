@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:13 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/04 14:22:52 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 17:32:39 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	find_closing_quote(t_ms *shell, const char *str, char quote_type, int start)
 	while (str[i] && str[i] != quote_type)
 		i++;
 	if (str[i] == quote_type)
+	{
+		shell->processed_quotes = 1;
 		return (i);
+	}
 	else
 	{
 		ft_putstr_fd(\

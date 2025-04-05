@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:26 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/04 17:16:35 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 14:36:58 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	parse_tokens(t_ms *shell)
 	token = shell->token;
 	cmd = NULL;
 	cmd = setup_token(shell, cmd, token);
-	shell->token_loop = 0;
 	while (token)
 	{
 		if (token->type == TOKEN_ARGS)
@@ -119,7 +118,6 @@ void	parse_tokens(t_ms *shell)
 			token = token->next;
 			continue ;
 		}
-		shell->token_loop++;
 		token = token->next;
 	}
 }
