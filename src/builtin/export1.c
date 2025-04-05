@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:16 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/01 16:18:55 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 18:59:29 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,13 @@ void	if_value_not_empty(t_ms *shell, char *key, char *value, int i)
 {
 	char	*temp;
 
-	temp = ft_strjoin(key, "=\"");
+	temp = ft_strjoin(key, "=");
 	if (!temp)
 		malloc_error(shell);
 	shell->env_list[i] = ft_strjoin(temp, value);
 	if (!shell->env_list[i])
 		malloc_error(shell);
 	free(temp);
-	temp = shell->env_list[i];
-	shell->env_list[i] = ft_strjoin(temp, "\"");
-	free(temp);
-	if (!shell->env_list[i])
-		malloc_error(shell);
 }
 
 void	if_equal_found(t_ms *shell, char *key, int i)

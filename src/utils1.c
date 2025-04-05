@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:59 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/05 17:12:37 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 18:54:22 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,17 @@ int	event(void)
 void	ft_putstr_eq(char *str)
 {
 	int	i;
+	int	one_equal;
 
 	if (!str)
 		return ;
 	i = 0;
+	one_equal = 0;
 	while (str[i])
 	{
-		if (str[i] == '=')
+		if (str[i] == '=' && one_equal == 0)
 		{
+			one_equal = 1;
 			ft_putchar_fd(str[i], 1);
 			i++;
 			if (str[i] != '\"')

@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:07:41 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/05 17:55:27 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 18:54:34 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void			create_env(t_ms *shell, char **envp);
 int				update_pwd(t_ms *shell, char *string, char *value);
 int				env_list_size(char **envp);
 void			ft_export(char **command, t_ms *shell);
-void			print_variables(char	**copy_list, int i);
+void			print_variables(char **copy_list, int i);
 void			print_sorted_env(t_ms *shell);
 void			export_error(t_ms *shell, char *arg);
 void			if_value_not_empty(t_ms *shell, char *key, char *value, int i);

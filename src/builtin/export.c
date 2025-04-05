@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saylital <saylital@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:43:38 by saylital          #+#    #+#             */
-/*   Updated: 2025/03/19 17:39:05 by saylital         ###   ########.fr       */
+/*   Updated: 2025/04/05 18:32:27 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	export_command_check(char **command, t_ms *shell)
 	if (!command[1])
 	{
 		print_sorted_env(shell);
+		shell->exit_code = 0;
 		return (1);
 	}
 	return (0);
