@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:39:40 by saylital          #+#    #+#             */
-/*   Updated: 2025/04/04 16:46:47 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/05 18:23:47 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,17 @@ void	ft_cd(char **command, t_ms *shell)
 	oldpwd = getcwd(NULL, 0);
 	if (!oldpwd)
 		return (if_not_oldpwd(shell, command, home, oldpwd));
+	if (command[1])
+	{
+		if (*command[1] == '\0')
+		{
+			free(oldpwd);
+			oldpwd = NULL;
+			free(home);
+			home = NULL;
+			return ;
+		}
+	}
 	prev_pwd_func(shell, oldpwd);
 	if (count == 1)
 		return (if_count_is_1(shell, oldpwd, home));
