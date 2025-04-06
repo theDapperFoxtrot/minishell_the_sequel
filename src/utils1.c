@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:59 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/05 18:54:22 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 16:16:35 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@ char	*free_and_nullify(char *str_ptr)
 
 int	validate_str(char *str, char *acc_values)
 {
-	size_t	s_i;
-	size_t	a_i;
+	size_t	i;
+	size_t	j;
 
-	s_i = 0;
-	if (str == NULL || acc_values == NULL)
+	i = 0;
+	if (str == NULL || str[i] == '\0' || acc_values == NULL)
 		return (-1);
-	while (str[s_i] != '\0')
+	while (str[i] != '\0')
 	{
-		a_i = 0;
-		while (acc_values[a_i] != '\0')
+		j = 0;
+		while (acc_values[j] != '\0')
 		{
-			if (str[s_i] == acc_values[a_i])
+			if (str[i] == acc_values[j])
 				break ;
-			a_i++;
-			if (acc_values[a_i] == '\0')
+			j++;
+			if (acc_values[j] == '\0')
 				return (-1);
 		}
-		s_i++;
+		i++;
 	}
 	return (1);
 }

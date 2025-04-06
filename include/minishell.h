@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:07:41 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/06 15:37:31 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 16:12:00 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ int				actually_exit(t_ms *shell);
 long long		msatol(const char *str);
 void			ft_env(char **command, t_ms *shell);
 void			ft_cd(char **command, t_ms *shell);
+int				cd_has_null(char **command, t_ms *shell);
 void			prev_pwd_func(t_ms *shell, char *oldpwd);
 char			*get_home_var(t_ms *shell);
 void			if_count_is_1(t_ms *shell, char *oldpwd, char *home);
@@ -206,7 +207,7 @@ void			parse_tokens(t_ms *shell);
 char			*parse_quotes(char *str);
 void			add_argument(t_command *cmd, char *arg, t_ms *shell);
 char			*handle_expansions(t_ms *shell, const char *str);
-void				handle_token_args(t_ms *shell, t_command *cmd, t_token *token);
+void			handle_token_args(t_ms *shell, t_command *cmd, t_token *token);
 t_command		*new_cmd_struct(t_ms *shell);
 void			handle_token_redir_in(t_ms *shell, \
 				t_command *cmd, t_token *token);
