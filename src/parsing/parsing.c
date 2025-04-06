@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:26 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/05 14:36:58 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 15:09:16 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,18 @@ void	parse_tokens(t_ms *shell)
 	cmd = setup_token(shell, cmd, token);
 	while (token)
 	{
-		if (token->type == TOKEN_ARGS)
-			handle_token_args(shell, cmd, token);
-		else if (token->type == TOKEN_PIPE)
-			cmd = new_command(shell, cmd, token);
+        if (token->type == TOKEN_ARGS)
+            handle_token_args(shell, cmd, token);
+        else if (token->type == TOKEN_PIPE)
+        {
+            if (token->next && token->next->type == TOKEN_PIPE)
+            {
+				ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
+				shell->exit_code = 2;
+				return ;
+            }
+            cmd = new_command(shell, cmd, token);
+        }
 		else
 		{
 			token = check_token_redir(shell, cmd, token);

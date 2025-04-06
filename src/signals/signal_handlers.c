@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:33 by smishos           #+#    #+#             */
-/*   Updated: 2025/03/19 20:09:34 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 15:58:53 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,10 @@ void	start_sig_checkers(void *handler_func)
 {
 	check_signals(SIGINT, handler_func);
 	check_signals(SIGQUIT, handler_func);
+}
+
+void	start_sig_checkers_hd(void *handler_func)
+{
+	check_signals(SIGINT, handler_func);
+	check_signals(SIGQUIT, SIG_IGN);
 }

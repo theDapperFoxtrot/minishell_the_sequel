@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:07:41 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/05 18:54:34 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 15:37:31 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void			sig_handler_heredoc(int signal);
 int				default_signals(void);
 int				init_signals(void);
 void			start_sig_checkers(void *handler_func);
+void			start_sig_checkers_hd(void *handler_func);
 //utils.c
 void			free_args(char **commands);
 void			free_env(t_ms *shell);
