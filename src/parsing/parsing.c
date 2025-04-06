@@ -6,14 +6,14 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:26 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/06 15:09:16 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 17:22:51 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 t_token	*handle_token_redir(t_ms *shell, t_command *cmd, t_token *token, \
-							void (*func)(t_ms *, t_command *, t_token *))
+			void (*func)(t_ms *, t_command *, t_token *))
 {
 	if (pipe_syntax_check(shell, token))
 		return (NULL);
@@ -60,18 +60,18 @@ t_token	*check_token_redir(t_ms *shell, t_command *cmd, t_token *token)
 	return (token);
 }
 
-t_command	*setup_token(t_ms *shell, t_command *cmd, t_token *token)
+t_command	*setup_token(t_ms *shell, t_command **cmd, t_token *token)
 {
-	cmd = malloc(sizeof(t_command));
-	if (!cmd)
+	*cmd = malloc(sizeof(t_command));
+	if (!*cmd)
 		return (NULL);
-	ft_bzero(cmd, sizeof(t_command));
-	shell->commands = cmd;
+	ft_bzero(*cmd, sizeof(t_command));
+	shell->commands = *cmd;
 	shell->command_input_count = 0;
-	shell->command_input_count = setup_command_input_count(shell, cmd, token);
-	cmd->command_input_index = 0;
-	cmd->next = NULL;
-	return (cmd);
+	shell->command_input_count = setup_command_input_count(shell, *cmd, token);
+	(*cmd)->command_input_index = 0;
+	(*cmd)->next = NULL;
+	return (*cmd);
 }
 
 void	handle_not_next_token(t_ms *shell, t_command *cmd, t_token *token)
@@ -94,38 +94,25 @@ void	parse_tokens(t_ms *shell)
 	t_command	*cmd;
 
 	token = shell->token;
-	cmd = NULL;
-	cmd = setup_token(shell, cmd, token);
+	cmd = setup_token(shell, &cmd, token);
 	while (token)
 	{
-        if (token->type == TOKEN_ARGS)
-            handle_token_args(shell, cmd, token);
-        else if (token->type == TOKEN_PIPE)
-        {
-            if (token->next && token->next->type == TOKEN_PIPE)
-            {
-				ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
-				shell->exit_code = 2;
+		if (token->type == TOKEN_ARGS)
+			handle_token_args(shell, cmd, token);
+		else if (token->type == TOKEN_PIPE)
+		{
+			cmd = if_token_pipe(shell, cmd, token);
+			if (!cmd)
 				return ;
-            }
-            cmd = new_command(shell, cmd, token);
-        }
+		}
 		else
 		{
 			token = check_token_redir(shell, cmd, token);
 			if (!token)
 				return ;
 		}
-		if (!token->next)
-		{
-			handle_not_next_token(shell, cmd, token);
+		if (if_no_next_token(shell, cmd, token))
 			break ;
-		}
-		if (token->type == TOKEN_PIPE)
-		{
-			token = token->next;
-			continue ;
-		}
 		token = token->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:54 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/05 17:29:18 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 16:56:36 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ void	execute_command(t_ms *shell, char **args)
 			cleanup(shell, 1);
 			exit(127);
 		}
-		// int i = 0;
-		// printf("execve: %s\n", path);
-		// while (args[i])
-		// {
-		// 	printf("args: %s\n", args[i++]);
-		// }
 		if (execve(path, args, shell->env_list) == -1)
 		{
 			if (g_signal == SIGINT)
@@ -90,11 +84,8 @@ t_command	*parent_process(t_ms *shell, t_command *command, int *new_pipe)
 	return (command);
 }
 
-t_command	*check_for_exit(t_ms *shell, t_command *command, int *new_pipe)
+t_command	*check_for_exit(t_ms *shell, t_command *command)
 {
-	(void)new_pipe;
-	// if (shell->child_count > 1)
-	// 	close(new_pipe[0]);
 	ft_exit(command, shell);
 	command = command->next;
 	return (command);

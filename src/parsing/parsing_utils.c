@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:02 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/06 15:29:46 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 17:02:22 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	heredoc_loop(t_ms *shell, t_command *cmd, int i)
 {
 	while (1)
 	{
-		// start_sig_checkers(&sig_handler_heredoc);
 		cmd->heredoc_lines = ft_realloc(cmd->heredoc_lines, \
 				sizeof(char *) * i, sizeof(char *) * (i + 1));
 		if (!cmd->heredoc_lines)

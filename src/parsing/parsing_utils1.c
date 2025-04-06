@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:09:05 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/05 17:30:42 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 17:02:39 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	go_through_exp_cases(t_ms *shell, const char *str)
 	return (1);
 }
 
-char *handle_expansions(t_ms *shell, const char *str)
+char	*handle_expansions(t_ms *shell, const char *str)
 {
 	shell->exp.i = 0;
 	shell->exp.j = 0;
@@ -112,7 +112,8 @@ char *handle_expansions(t_ms *shell, const char *str)
 	}
 	shell->exp.value = free_and_nullify(shell->exp.value);
 	shell->exp.var_name = free_and_nullify(shell->exp.var_name);
-	shell->exp.result = ft_realloc(shell->exp.result, shell->exp.j, shell->exp.j + 1);
+	shell->exp.result = \
+		ft_realloc(shell->exp.result, shell->exp.j, shell->exp.j + 1);
 	if (!shell->exp.result)
 		malloc_error(shell);
 	shell->exp.result[shell->exp.j] = '\0';

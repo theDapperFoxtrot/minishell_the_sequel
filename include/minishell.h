@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:07:41 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/06 16:12:00 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 17:26:02 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,16 +193,20 @@ void			child_process(t_ms *shell, t_command *command, int *new_pipe);
 t_command		*parent_process(t_ms *shell, t_command *command, int *new_pipe);
 t_command		*check_for_dots(t_ms *shell, t_command *command);
 t_command		*check_for_dot(t_ms *shell, t_command *command);
-t_command		*check_for_exit(t_ms *shell, t_command *command, int *new_pipe);
-t_command		*checking_for_select_commands(t_ms *shell, t_command *command, \
-					int *new_pipe);
+t_command		*check_for_exit(t_ms *shell, t_command *command);
+t_command		*checking_for_select_commands(t_ms *shell, t_command *command);
 void			parent_wait(t_ms *shell, t_command *command, int *pipefd);
 void			pipe_failure(t_ms *shell);
 int				run_builtin(t_ms *shell, char **command, \
 					void (*function)(char **, t_ms *));
 char			*cmd_not_found(char *splitted_args);
 void			perm_den_exit(t_ms *shell, char *executable_path);
+int				is_dir(char *str);
 // parser
+void			handle_not_next_token(t_ms *shell, \
+					t_command *cmd, t_token *token);
+t_command		*if_token_pipe(t_ms *shell, t_command *cmd, t_token *token);
+int				if_no_next_token(t_ms *shell, t_command *cmd, t_token *token);
 void			parse_tokens(t_ms *shell);
 char			*parse_quotes(char *str);
 void			add_argument(t_command *cmd, char *arg, t_ms *shell);

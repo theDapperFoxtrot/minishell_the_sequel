@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:33:02 by saylital          #+#    #+#             */
-/*   Updated: 2025/04/06 16:13:07 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 17:25:21 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	ft_exit(t_command *command, t_ms *shell)
 	else if (command->args[1] && !command->next)
 	{
 		shell->exit_code = ft_atoi(command->args[1]);
-		// ft_putstr_fd("exit\n", 1);
+		ft_putstr_fd("exit\n", 1);
 		if (actually_exit(shell) == 1)
 			return ;
 	}

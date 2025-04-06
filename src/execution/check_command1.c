@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:08:45 by smishos           #+#    #+#             */
-/*   Updated: 2025/04/05 19:45:19 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 16:24:49 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	is_parent_builtin(char **cmd, t_ms *shell)
 	return (0);
 }
 
-int check_if_not_directory(char **command, t_ms *shell)
+int	check_if_not_directory(char **command, t_ms *shell)
 {
 	int		not_dir;
 
@@ -50,11 +50,11 @@ int check_if_not_directory(char **command, t_ms *shell)
 		not_dir = 1;
 	if (not_dir)
 	{
-			ft_putstr_fd("minishell: ", 2);
-			ft_putstr_fd(command[0], 2);
-			ft_putstr_fd(": Not a directory\n", 2);
-			shell->exit_code = 127;
-			return (1);
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(command[0], 2);
+		ft_putstr_fd(": Not a directory\n", 2);
+		shell->exit_code = 127;
+		return (1);
 	}
 	return (0);
 }
@@ -117,17 +117,4 @@ char	*find_path(char *cmd, char **envp)
 		return (NULL);
 	}
 	return (path);
-}
-
-int	is_dir(char *str)
-{
-	int		fd3;
-
-	fd3 = open(str, O_DIRECTORY);
-	if (fd3 != -1)
-	{
-		close(fd3);
-		return (1);
-	}
-	return (0);
 }

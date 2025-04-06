@@ -6,7 +6,7 @@
 /*   By: smishos <smishos@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 13:47:21 by saylital          #+#    #+#             */
-/*   Updated: 2025/04/05 18:20:08 by smishos          ###   ########.fr       */
+/*   Updated: 2025/04/06 16:19:14 by smishos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	error_and_exit_code(t_ms *shell)
 void	if_count_is_1(t_ms *shell, char *oldpwd, char *home)
 {
 	if (chdir(home) == -1)
-	error_and_exit_code(shell);
+		error_and_exit_code(shell);
 	update_pwd(shell, "OLDPWD=", shell->prev_pwd);
 	shell->prev_pwd = NULL;
 	free(oldpwd);
@@ -66,7 +66,7 @@ void	if_pipe_count(t_ms *shell, char **command, char *oldpwd)
 {
 	if (chdir(command[1]) == -1)
 	{
-		ft_putstr_fd("cd: yo yo yono such file or directory: ", 2);
+		ft_putstr_fd("cd: no such file or directory: ", 2);
 		ft_putendl_fd(command[1], 2);
 		shell->exit_code = 1;
 	}
